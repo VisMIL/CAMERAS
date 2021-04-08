@@ -112,3 +112,6 @@ if __name__ == '__main__':
 
 ``` 
 A comprehensive example is available in `demo.py` script. 
+
+## Announcements !!!
+We are actively working on developing a Keras based implemention, it will be released soon!
