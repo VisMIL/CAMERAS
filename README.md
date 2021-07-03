@@ -5,10 +5,11 @@ The repository provides implementation of CAMERAS with PyTorch
 *__CAMERAS: Enhanced Resolution And Sanity preserving Class Activation Mapping for image Saliency__. Jalwana, Akhtar, Mian, Bennamoun. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2021.*
 
 Bibtex:
-@inproceedings{jalwana2021enhanced,
-  title={CAMERAS: Enhanced Resolution And Sanity preserving Class Activation Mapping for image Saliency},
+@inproceedings{jalwana2021cameras,
+  title={CAMERAS: Enhanced Resolution And Sanity preserving Class Activation Mapping for image saliency},
   author={Jalwana, Mohammad AAK and Akhtar, Naveed and Bennamoun, Mohammed and Mian, Ajmal},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={16327--16336},
   year={2021}
 }
 
@@ -114,4 +115,52 @@ if __name__ == '__main__':
 A comprehensive example is available in `demo.py` script. 
 
 ## Announcements !!!
-We are actively working on developing a Keras based implemention, it will be released soon!
+
+We have released the first version to compute CAMERAS maps in Keras. 
+A complete demo code can be found in `demoKeras.py`.
+
+## Requirements
+The code was tested over Ubuntu 18.04 with the following versions of packages
+
+* tensorflow 2.4.1
+* python 3.8.1
+* matplotlib 3.1.3
+* opencv 4.5.1
+* numpy 1.18.1
+
+## How to compute CAMERAS maps?
+
+In order to compute CAMERAS saliency map, we need to create an object of _CAMERASKeras_ defined in  **KerasMap/CAMERASKeras.py**. This can be done as below 
+
+```python
+    # import CAMERASKeras class
+    from KerasMap.CAMERASKeras import CAMERASKeras
+    
+    # Creating CAMERASKeras object
+    cameras = CAMERASKeras(modelArchitecture="ResNet50", targetLayerName="conv5_block3_out")
+
+```
+
+Saliency is then computed by calling `run()` that requires the path of image file and label of the class of interest.
+
+```python
+    saliency = cameras.run(imagePath=ImagePath, classOfInterest=243)
+
+```
+
+A complete example is given below. 
+
+## Demo 
+
+```python
+import matplotlib.pyplot as plt
+from KerasMap.CAMERASKeras import CAMERASKeras
+
+ImagePath = './cat_dog.png'
+cameras = CAMERASKeras(modelArchitecture="ResNet50", targetLayerName="conv5_block3_out")
+saliency = cameras.run(imagePath=ImagePath, classOfInterest=243)
+plt.imshow(saliency)
+plt.show()
+``` 
+
+Please check **demoKeras.py** for detailed example. 
