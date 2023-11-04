@@ -58,7 +58,7 @@ Once we have the model, we can select any of its layer and different resolutions
 
 ```python
     # import CAMERAS class
-    from CAMERAS import CAMERAScompute
+    from CAMERAS import CAMERAS
     
     # Creating CAMERAS object
     cameras = CAMERAS(model=model, targetLayerName="layer4", inputResolutions=[224, 324, 424, 524])
